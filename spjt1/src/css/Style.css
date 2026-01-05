@@ -1,0 +1,7 @@
+/* 외부링크 장점 : css문법과 동일 */
+/* import 사용으로 적용이 바로 됨 */
+.main{
+    text-align: left;
+    background-color: aqua;
+    font-size: 50px;
+}
