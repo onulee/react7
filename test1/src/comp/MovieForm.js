@@ -1,33 +1,63 @@
-import React,{useState,useEffect} from "react";
+import React,{useState,useRef,useEffect} from "react";
 
 
-const MovieForm = ({addMovies}) =>{
+const MovieForm = ({addMovies,editMovie}) =>{
+    const [saveTxt,setSaveTxt] = useState('저장');
 
-    const [no,setNo] = useState();
+    useEffect(() => {
+      if (editMovie) {
+        setTitle(editMovie.title);
+        setYear(editMovie.year);
+        setSaveTxt('수정');
+      }
+    }, [editMovie]);
+
+    const now = new Date();
+    const noRef = useRef(4);
     const [title,setTitle] = useState('');
     const [year,setYear] = useState('');
-    const [count,setCount] = useState(4);
-
+    
+    // 날짜출력함수
+    const nowDay = () =>{
+      const myear = now.getFullYear();
+      const month = String(now.getMonth() + 1).padStart(2, '0');
+      const day = String(now.getDate()).padStart(2, '0');
+      return `${myear}-${month}-${day}`;
+    }
+    
+    // 저장버튼함수 
     const saveBtn = (e) => {
         e.preventDefault();
-        if (year.trim()==''){
+        if (year.trim()===''){
         alert('데이터를 입력해야 저장이 가능합니다.');
         return;
         }
-        addMovies({'no':count,'title':title,'year':year});
-        alert("영화정보를 저장합니다.");
-        setCount(count + 1);
-        console.log("count : ",count);
-
+        addMovies({'no':noRef.current,'title':title,'year':year},saveTxt);
+        alert(`영화정보를 ${saveTxt}합니다.`);
+        noRef.current += 1;
+        console.log("no.current : ",noRef);
+        console.log(nowDay());
         //inputbox 초기화
+        clearTxt();
+    }
+
+    const cancelBtn = () =>{
+      //inputbox 초기화
+      clearTxt();
+      if (saveTxt === '수정') setSaveTxt('저장') ;
+    }
+
+    // inputbox 초기화
+    const clearTxt = () => {
+        setSaveTxt('저장');
         setTitle('');
         setYear('');
     }
 
     const onKeyUp = (e) => {
-        if(e.keyCode == 13){
+        if(e.keyCode === 13){
         console.log("엔터키 입력됨.")
-        if(year=='') return;
+        if(year==='') return;
         saveBtn(e);
         }
     }
@@ -47,7 +77,8 @@ const MovieForm = ({addMovies}) =>{
             <input type="checkbox" className="form-check-input" id="exampleCheck1" />
             <label className="form-check-label" htmlFor="exampleCheck1">아이디 저장</label>
           </div>
-          <button type="button" className="btn btn-primary" onClick={saveBtn}>저장</button>
+          <button type="button" className="btn btn-primary" onClick={saveBtn}>{saveTxt}</button>
+          <button type="button" className="btn btn-primary" onClick={cancelBtn}>취소</button>
         </form>
     )
 }
