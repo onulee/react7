@@ -16,9 +16,7 @@ function App() {
       selectNoRef.current = no;
   }
 
-  const confirmDelete = () =>{
-    console.log("확인");
-  }
+ 
 
   //원본 데이터
   const [movies,setMovies] = useState(
@@ -29,12 +27,18 @@ function App() {
     ]
   )
 
-  //2. 영화추가
+  //2. 영화추가,수정
   const addMovies = (movie,saveTxt) => { 
     if(saveTxt === '저장'){
       setMovies([movie,...movies]);  
     }else{
+      console.log('영화추가(수정) : ',movie)
       console.log('수정되었습니다.');
+      setMovies(
+       movies.map((m)=>{
+        return (m.no==movie.no?({...m,...movie}):m);
+       })
+      )
     }
   }
   //3. 영화삭제

@@ -6,6 +6,7 @@ const MovieForm = ({addMovies,editMovie}) =>{
 
     useEffect(() => {
       if (editMovie) {
+        setNo(editMovie.no);
         setTitle(editMovie.title);
         setYear(editMovie.year);
         setSaveTxt('수정');
@@ -14,6 +15,7 @@ const MovieForm = ({addMovies,editMovie}) =>{
 
     const now = new Date();
     const noRef = useRef(4);
+    const [no,setNo] = useState('');
     const [title,setTitle] = useState('');
     const [year,setYear] = useState('');
     
@@ -32,12 +34,16 @@ const MovieForm = ({addMovies,editMovie}) =>{
         alert('데이터를 입력해야 저장이 가능합니다.');
         return;
         }
-        addMovies({'no':noRef.current,'title':title,'year':year},saveTxt);
+        if(saveTxt == '저장'){
+          addMovies({'no':noRef.current,'title':title,'year':year},saveTxt);
+          noRef.current += 1;
+          console.log("no.current : ",noRef);
+        }else{
+          addMovies({'no':no,'title':title,'year':year},saveTxt);
+        }
         alert(`영화정보를 ${saveTxt}합니다.`);
-        noRef.current += 1;
-        console.log("no.current : ",noRef);
-        console.log(nowDay());
         //inputbox 초기화
+        console.log(nowDay());
         clearTxt();
     }
 

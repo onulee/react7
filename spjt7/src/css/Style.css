@@ -1,0 +1,11 @@
+.root{
+    width:500px; height:100%;
+    border:1px solid black;
+    margin:20px auto;
+}
+.root h3{text-align: center; margin-top:20px;}
+.root form{border:1px solid black; margin:20px 10px 20px;
+    padding:10px;
+}
+.root button{margin-right:10px;}
+.card{margin-bottom:20px;}
