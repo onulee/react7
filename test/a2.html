@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let movie_arr = [
+        {'no':1,'title':'아이언맨1','year':2002},
+        {'no':2,'title':'아이언맨2','year':2003},
+        {'no':3,'title':'아이언맨3','year':2004},
+        ];
+
+        // 2번 상세보기
+        let movie_arr2 = movie_arr.filter(
+            (m) => {
+                return(m.no != 2);
+            }
+        )
+
+        console.log(movie_arr2);
+        
+
+
+    </script>
+</body>
+</html>

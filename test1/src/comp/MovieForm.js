@@ -1,6 +1,5 @@
 import React,{useState,useRef,useEffect} from "react";
 
-
 const MovieForm = ({addMovies,editMovie}) =>{
     const [saveTxt,setSaveTxt] = useState('저장');
 
@@ -34,7 +33,7 @@ const MovieForm = ({addMovies,editMovie}) =>{
         alert('데이터를 입력해야 저장이 가능합니다.');
         return;
         }
-        if(saveTxt == '저장'){
+        if(saveTxt === '저장'){
           addMovies({'no':noRef.current,'title':title,'year':year},saveTxt);
           noRef.current += 1;
           console.log("no.current : ",noRef);

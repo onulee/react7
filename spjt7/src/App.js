@@ -1,11 +1,12 @@
 import logo from './logo.svg';
 import './App.css';
 import './css/Style.css';
-import { useState,useEffect } from 'react';
+import { useState,useEffect,useRef } from 'react';
 
 function App() {
 
   //useState변수
+  const noInputRef = useRef('');
   const [no,setNo] = useState('');
   const [title,setTitle] = useState('');
   const [year,setYear] = useState('');
@@ -20,16 +21,31 @@ function App() {
     {no:4,title:'아이언맨2',year:'2025'},
   ]
   )
-  //Json형태 - 일반변수
-  // let movies = 
+  // 추가
+  // setMovies([...movies,추가할항목])
+  // setMovies([...movies,{no:no,title:title,year:year}])
 
+  const saveBtn = () =>{
+    if(title.trim()==''){
+      alert('영화제목을 입력하셔야 저장이 가능합니다.');
+      noInputRef.current.focus();
+      return;
+    }
+    console.log("넘어온 데이터 : ",no,title,year);
+    setMovies([{'no':no,'title':title,'year':year},...movies])
+    alert('영화제목을 저장합니다.');
+    //input박스 리셋
+    setNo('');
+    setTitle('');
+    setYear('');
+  }
 
   //리스트를 map()함수 실행방법
   //for문을 사용할수 없음.
   const movie_list = movies.map(// 함수실행
      (movie) =>{
       return(
-        <div className="card">
+        <div className="card" key={movie.no}>
           <h5 className="card-header">번호 : {movie.no}</h5>
           <div className="card-body">
             <h5 className="card-title">제목 : {movie.title}</h5>
@@ -50,24 +66,24 @@ function App() {
       <h3>영화입력</h3>
       <form>
         <div className="row mb-3">
-          <label for="inputEmail3" className="col-sm-2 col-form-label">번호</label>
+          <label htmlFor="inputEmail3" className="col-sm-2 col-form-label">번호</label>
           <div className="col-sm-10">
-            <input type="text" value={no} onChange={(e)=>setNo(e.target.value)} className="form-control" id="inputEmail3" />
+            <input type="text" ref={noInputRef} value={no} onChange={(e)=>setNo(e.target.value)} className="form-control" id="inputEmail3" />
           </div>
         </div>
         <div className="row mb-3">
-          <label for="inputEmail4" className="col-sm-2 col-form-label">제목</label>
+          <label htmlFor="inputEmail4" className="col-sm-2 col-form-label">제목</label>
           <div className="col-sm-10">
             <input type="text" value={title} onChange={(e)=>setTitle(e.target.value)} className="form-control" id="inputEmail4" />
           </div>
         </div>
         <div className="row mb-3">
-          <label for="inputPassword3" className="col-sm-2 col-form-label">년도</label>
+          <label htmlFor="inputPassword3" className="col-sm-2 col-form-label">년도</label>
           <div className="col-sm-10">
             <input type="text" value={year} onChange={(e)=>setYear(e.target.value)} className="form-control" id="inputPassword3" />
           </div>
         </div>
-        <button type="button" className="btn btn-primary ">저장</button>
+        <button type="button" onClick={saveBtn} className="btn btn-primary ">저장</button>
         <button type="button" className="btn btn-primary">취소</button>
       </form>
       {/* 출력부분 */}
