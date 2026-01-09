@@ -6,7 +6,8 @@
     margin:0 auto;
 }
 h2{text-align: center;}
-.card{margin:20px 0;}
+form{margin:20px 0 50px; border:1px solid #a9a9a9; padding:10px;}
+.card{margin:20px 0 ;}
 .btn{margin-right:10px;}
 
 

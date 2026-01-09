@@ -1,14 +1,24 @@
 import React from "react";
 
-const Movies = ({movie}) => {
+const Movies = ({movie,delMovie}) => {
+
+    const delBtn = (no) => {
+        if(window.confirm(no+"번 데이터를 삭제하시겠습니까?")){
+            delMovie(no);
+        }
+        
+        
+    }
+
+
     return(
         <div className="card">
             <h5 className="card-header">번호 : {movie.no}</h5>
             <div className="card-body">
             <h5 className="card-title">제목 : {movie.title}</h5>
             <p className="card-text">년도 : {movie.year}</p>
-            <a href="#" className="btn btn-primary">수정</a>
-            <a href="#" className="btn btn-primary">삭제</a>
+            <button className="btn btn-primary">수정</button>
+            <button onClick={()=>delBtn(movie.no)} className="btn btn-primary">삭제</button>
             </div>
         </div>
     )
