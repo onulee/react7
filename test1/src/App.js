@@ -20,18 +20,7 @@ function App() {
     ]
   )
 
-  //3. 수정폼
-  const uFormMovies = (no) =>{
-    console.log("no : ",no);
-    //해당데이터 가져오기
-    // const m_movie = movies.filter(movie => {
-    //     return movie.no == no;
-    // });
-    const m_movie = movies.find(movie => movie.no === no);
-    console.log("m_movie : ",m_movie);
-    setEditMovie(m_movie);
-    alert('수정을 진행합니다.');
-  }
+  
   
 
   useEffect(
@@ -65,6 +54,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/mlist" element={<M_list movies={movies} setMovies={setMovies} />} />
         <Route path="/mform" element={<M_form movies={movies} setMovies={setMovies}  />} />
+        <Route path="/mform/:no" element={<M_form movies={movies} setMovies={setMovies}  />} />
         <Route path="/users" element={<Users />} />
       </Routes>
 

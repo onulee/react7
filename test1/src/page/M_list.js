@@ -1,10 +1,10 @@
 import React,{useState,useRef} from "react";
+import { useNavigate } from "react-router-dom";
 import Movie from '../comp/Movie';
 
 const M_list = ({movies,setMovies}) =>{
   
-
-  
+  const navigate = useNavigate();
   const selectNoRef = useRef();
   
   const [show,setShow] = useState(false);
@@ -44,6 +44,8 @@ const M_list = ({movies,setMovies}) =>{
        <Movie movie={movie} key={movie.no} openModal={openModal} />
     );
   }): nonExist;
+
+  
 
 
 

@@ -1,7 +1,10 @@
 import React,{useState,useRef,useEffect} from "react";
+import { useNavigate } from "react-router-dom";
 
-const MovieForm = ({addMovies,editMovie}) =>{
+const MovieForm = ({movies,addMovies,editMovie}) =>{
+    const navigate = useNavigate();
     const [saveTxt,setSaveTxt] = useState('저장');
+    console.log("전체데이터 MovieForm movies : ",movies);
 
     useEffect(() => {
       if (editMovie) {
@@ -38,18 +41,21 @@ const MovieForm = ({addMovies,editMovie}) =>{
           noRef.current += 1;
           console.log("no.current : ",noRef);
         }else{
-          addMovies({'no':no,'title':title,'year':year},saveTxt);
+          addMovies({'no':parseInt(no),'title':title,'year':parseInt(year)},saveTxt);
         }
         alert(`영화정보를 ${saveTxt}합니다.`);
         //inputbox 초기화
         console.log(nowDay());
         clearTxt();
+        
+
     }
 
     const cancelBtn = () =>{
       //inputbox 초기화
       clearTxt();
       if (saveTxt === '수정') setSaveTxt('저장') ;
+      navigate('/mlist');
     }
 
     // inputbox 초기화
@@ -78,10 +84,7 @@ const MovieForm = ({addMovies,editMovie}) =>{
             <label htmlFor="exampleInputPassword1" className="form-label">년도</label>
             <input type="text" className="form-control" onKeyUp={onKeyUp} value={year} onChange={e=>setYear(e.target.value)} id="exampleInputPassword1" />
           </div>
-          <div className="mb-3 form-check">
-            <input type="checkbox" className="form-check-input" id="exampleCheck1" />
-            <label className="form-check-label" htmlFor="exampleCheck1">아이디 저장</label>
-          </div>
+          
           <button type="button" className="btn btn-primary" onClick={saveBtn}>{saveTxt}</button>
           <button type="button" className="btn btn-primary" onClick={cancelBtn}>취소</button>
         </form>
