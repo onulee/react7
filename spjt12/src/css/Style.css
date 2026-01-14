@@ -1,0 +1,8 @@
+.root {
+    width:500px; height:100%;
+    border:1px solid black;
+    margin:10px auto;
+    padding:20px;
+}
+
+.root h2{text-align: center;}

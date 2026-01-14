@@ -1,6 +1,7 @@
 import React,{useState,useEffect} from "react";
 import axios from 'axios';
 import Spinner from "../compents/Spinner";
+import { selectUsers } from "../api/CommApi";
 
 const UserList = () =>{
 
@@ -9,13 +10,21 @@ const UserList = () =>{
 
     //axios -> 서버에 데이터 요청함.
     useEffect( () => {
-        axios.get('https://jsonplaceholder.typicode.com/users')
-        .then(res =>{
+        selectUsers().then(res =>{
             console.log("Json데이터 : ",res.data);
             setUsers(res.data);
             setLoading(false);
         })
     },[]);
+
+    // useEffect( () => {
+    //     axios.get('https://jsonplaceholder.typicode.com/users')
+    //     .then(res =>{
+    //         console.log("Json데이터 : ",res.data);
+    //         setUsers(res.data);
+    //         setLoading(false);
+    //     })
+    // },[]);
 
     const delBtn = (id) => {
         if (window.confirm(`${id} 회원을 삭제하시겠습니까?`)){

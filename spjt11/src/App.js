@@ -14,8 +14,8 @@ function App() {
       <Nav/>
       <Routes>
         <Route path='/BList' element={<BList/>} />
+        <Route path='/BList/:id' element={<BView/>} />
         <Route path='/BWrite' element={<BWrite/>} />
-        <Route path='/BView' element={<BView/>} />
         <Route path='/UserList' element={<UserList/>} />
         <Route path='/' element={<Home/>} />
       </Routes>
