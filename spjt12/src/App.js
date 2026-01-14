@@ -3,6 +3,7 @@ import './css/Style.css';
 import Nav from './comp/Nav';
 import Home from './pages/Home';
 import BList from './pages/BList';
+import BView from './pages/BView';
 import BWrite from './pages/BWrite';
 import MList from './pages/MList';
 
@@ -15,6 +16,7 @@ function App() {
         <Routes>
           <Route path='/' element={<Home/>} />
           <Route path='/board/bList' element={<BList/>} />
+          <Route path='/board/bList/:id' element={<BView/>} />
           <Route path='/board/bWrite' element={<BWrite/>} />
           <Route path='/member/mList' element={<MList/>} />
         </Routes>
