@@ -16,7 +16,7 @@ function App() {
         <Routes>
           <Route path='/' element={<Home/>} />
           <Route path='/board/bList' element={<BList/>} />
-          <Route path='/board/bList/:id' element={<BView/>} />
+          <Route path='/board/bList/:bno' element={<BView/>} />
           <Route path='/board/bWrite' element={<BWrite/>} />
           <Route path='/member/mList' element={<MList/>} />
         </Routes>

@@ -5,7 +5,7 @@
     padding:20px;
 }
 
-.root h2{text-align: center;}
+.root h2{text-align: center; margin-bottom:30px;}
 .root .d-flex{margin:50px 0;}
 .root .card{ margin:20px 0;}
 .root button{margin-right:10px;}
