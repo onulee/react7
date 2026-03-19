@@ -1,31 +1,35 @@
 import React,{useState,useEffect} from "react";
 import { useNavigate } from "react-router-dom";
 import axios from 'axios';
+import { selectList } from "../api/CommApi"; 
 
 const BList = () => {
 
     const navigate = useNavigate();
     const [flag,setFlag] = useState(false);
-    const [boards,setBoards] = useState(
-        [
-            // {'bno':'1','btitle':'게시글 제목입니다.1','bcontent':'게시글 내용입니다.1'},
-            // {'bno':'2','btitle':'게시글 제목입니다.2','bcontent':'게시글 내용입니다.2'},
-            // {'bno':'3','btitle':'게시글 제목입니다.3','bcontent':'게시글 내용입니다.3'},
-        ]
-    );
+    const [boards,setBoards] = useState([]);
 
     useEffect(
         () =>{
-            //axios -> setBoards() : 파라미터로 전달 params추가
-            axios.get('http://localhost:8181/customer/customerJson',
-                {params:{'id':'aaa','page':1}}
-            )
+            selectList('검색내용',1)
             .then(res=>{
                 console.log("넘어온 데이터 list",res.data.list);
                 setBoards(res.data.list);
             })
         },[flag]
     )
+    // useEffect(
+    //     () =>{
+    //         //axios -> setBoards() : 파라미터로 전달 params추가
+    //         axios.get('http://localhost:8181/customer/api_list',
+    //             {params:{'id':'aaa','page':1}}
+    //         )
+    //         .then(res=>{
+    //             console.log("넘어온 데이터 list",res.data.list);
+    //             setBoards(res.data.list);
+    //         })
+    //     },[flag]
+    // )
 
     const deleteBtn = (bno) =>{
         if(window.confirm(`${bno}번 게시글을 삭제하시겠습니까?`)){

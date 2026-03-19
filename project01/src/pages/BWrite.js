@@ -3,7 +3,7 @@ import { useNavigate,useLocation } from "react-router-dom";
 import axios from "axios";
 
 const BWrite = () => {
-    const location = useLocation(); // 선언
+    const location = useLocation(); // 파라미터로 데이터 전달
     const {bno} = location.state || {};
 
     const navigate = useNavigate();
