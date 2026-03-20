@@ -5,8 +5,10 @@ const API = axios.create({
  baseURL:'http://localhost:8181/',
 });
 
-export const board_list = (search,page) => API.get(`customer/blist?search=${search}&page=${page}`);
-export const board_view = (bno) => API.get(`customer/bview/${bno}`)
-export const board_delete = (bno) => API.delete(`customer/bdelete/${bno}`)
+export const get_boards = (search,page) => API.get(`customer/blist?search=${search}&page=${page}`);
+export const get_board = (bno) => API.get(`customer/bview/${bno}`)
+export const post_board = (data) => API.post(`customer/bwrite`,data)
+export const put_board = (data) => API.put(`customer/bupdate`,data)
+export const delete_board = (bno) => API.delete(`customer/bdelete`,bno)
 
-export const member_list = () => API.get('member/mlist')
+export const get_members = () => API.get('member/mlist')

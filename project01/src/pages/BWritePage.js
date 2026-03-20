@@ -1,26 +1,22 @@
 import React,{useState,useEffect} from "react";
 import { useNavigate,useLocation } from "react-router-dom";
 import axios from "axios";
+import { post_board,get_board } from "../api/CommApi";
 
-const BWrite = () => {
+const BWritePage = () => {
     const location = useLocation(); // 파라미터로 데이터 전달
     const {bno} = location.state || {}; //state로 넘어온 데이터 변수 없으면 빈공백(없으면 에러)
-
     const navigate = useNavigate();
     const [btitle,setBtitle] = useState('');
     const [bcontent,setBcontent] = useState('');
-    const [id,setId] = useState('aaa'); //로그인을 적용해서 session,token id를 가져옴.
-
-    
+    const [id,setId] = useState('aaa'); //로그인을 적용해서 session,token id를 가져옴.  
 
     // 글수정
     useEffect(
         () =>{
            //axios -> setBoards() : 파라미터로 전달 params추가
            if(bno){
-               axios.get(`http://localhost:8000/customer/cviewJson/${bno}/`,
-                    {params:{'id':'aaa','page':1}}
-                )
+               get_board(bno)
                 .then(res=>{
                     console.log("넘어온 데이터 board : ",res.data.board);
                     console.log("넘어온 데이터 member_id : ",res.data.board.member_id);
@@ -39,20 +35,19 @@ const BWrite = () => {
     const saveBtn = () =>{
         //axios -> 게시글저장 : post방식 {}객체형태로 전송
         if(bno){
-            axios.put('http://localhost:8000/customer/cupdateJson/',{'bno':bno,'id':id,'btitle':btitle,'bcontent':bcontent})
+            axios.put({'bno':bno,'id':id,'btitle':btitle,'bcontent':bcontent})
             .then(res=>{
-                alert('게시글을 저장합니다.');
+                alert('게시글을 수정합니다.');
                 navigate('/BList');
             })
         }else{
-            axios.post('http://localhost:8000/customer/cwriteJson/',{'id':id,'btitle':btitle,'bcontent':bcontent})
+            post_board({'id':id,'btitle':btitle,'bcontent':bcontent})
             .then(res=>{
                 alert('게시글을 저장합니다.');
-                navigate('/BList');
+                navigate('/blist');
             })
         }
     }
-
 
     return(
         <div className="root">
@@ -73,4 +68,4 @@ const BWrite = () => {
     )
 }
 
-export default BWrite;
+export default BWritePage;

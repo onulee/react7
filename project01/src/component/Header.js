@@ -12,13 +12,13 @@ const Nav = () => {
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                     <li className="nav-item">
-                        <Link className="nav-link active" aria-current="page" to="/BList">게시판리스트</Link>
+                        <Link className="nav-link active" aria-current="page" to="/blist">게시판리스트</Link>
                     </li>
                     <li className="nav-item">
-                        <Link className="nav-link" to="/BWrite">게시글등록</Link>
+                        <Link className="nav-link" to="/bwrite">게시글등록</Link>
                     </li>
                     <li className="nav-item">
-                        <Link className="nav-link" to="/UList">회원리스트</Link>
+                        <Link className="nav-link" to="/mlist">회원리스트</Link>
                     </li>
                     </ul>
                     <form className="d-flex" role="search">

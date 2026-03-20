@@ -2,7 +2,7 @@ import React,{useState,useEffect} from "react";
 import { useNavigate } from "react-router-dom";
 import { get_boards,get_board,delete_board } from "../api/CommApi";
 
-const BListPage = () => {
+const BViewPage = () => {
     const navigate = useNavigate(); //navigate연결
     const [flag,setFlag] = useState(false);
     const [boards,setBoards] = useState([]);
@@ -29,7 +29,7 @@ const BListPage = () => {
     }
 
     const updateBtn = (bno) =>{
-        navigate('/bwrite',{state:{'bno':bno}})  //state 값전달  `/bwrite/${bno}` 가능
+        navigate('/bwrite',{state:{'bno':bno}})  //state 값전달
     }
 
     //게시판리스트 출력함수 - map사용시 key입력
@@ -61,4 +61,4 @@ const BListPage = () => {
         </div>
     )
 }
-export default BListPage;
+export default BList;
