@@ -1,7 +1,7 @@
 import React,{useState,useEffect} from "react";
 import { useNavigate } from "react-router-dom";
 import axios from 'axios';
-import { selectList } from "../api/CommApi"; 
+import {board_list} from '../api/CommApi';
 
 const BList = () => {
 
@@ -11,7 +11,7 @@ const BList = () => {
 
     useEffect(
         () =>{
-            selectList('검색내용',1)
+            board_list('검색내용',1)
             .then(res=>{
                 console.log("넘어온 데이터 list",res.data.list);
                 setBoards(res.data.list);
@@ -43,7 +43,7 @@ const BList = () => {
     }
 
     const updateBtn = (bno) =>{
-        navigate('/BWrite',{state:{'bno':bno}})  //state 값전달
+        navigate('/bwrite',{state:{'bno':bno}})  //state 값전달
     }
 
     //게시판리스트 출력함수 - map사용시 key입력
