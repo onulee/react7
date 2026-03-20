@@ -6,6 +6,7 @@ import BoardForm from './component/BoardForm';
 import Header from './component/Header';
 import { getBoards } from './api/Public_api';
 
+//
 function App() {
   // 스프링 boardList와 연결
   const [boards,setBoards] = useState(
