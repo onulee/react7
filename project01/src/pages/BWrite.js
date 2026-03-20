@@ -4,7 +4,7 @@ import axios from "axios";
 
 const BWrite = () => {
     const location = useLocation(); // 파라미터로 데이터 전달
-    const {bno} = location.state || {};
+    const {bno} = location.state || {}; //state로 넘어온 데이터 변수 없으면 빈공백(없으면 에러)
 
     const navigate = useNavigate();
     const [btitle,setBtitle] = useState('');

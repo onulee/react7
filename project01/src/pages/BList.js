@@ -43,7 +43,7 @@ const BList = () => {
     }
 
     const updateBtn = (bno) =>{
-        navigate('/BWrite',{state:{'bno':bno}})
+        navigate('/BWrite',{state:{'bno':bno}})  //state 값전달
     }
 
     //게시판리스트 출력함수 - map사용시 key입력
