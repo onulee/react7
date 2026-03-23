@@ -12,3 +12,8 @@ export const put_board = (data) => API.put(`customer/bupdate`,data)
 export const delete_board = (bno) => API.delete(`customer/bdelete`,bno)
 
 export const get_members = () => API.get('member/mlist')
+//로그인 세션사용 : withCredentials: true
+export const post_login = (data) => API.post('member/loginApi',data,{withCredentials: true})
+export const get_session = (data) => API.get('member/session',{withCredentials: true})
+
+

@@ -1,12 +1,12 @@
 import React,{useState,useEffect} from "react";
 import { useNavigate,useLocation } from "react-router-dom";
 import axios from "axios";
-import { post_board,get_board } from "../api/CommApi";
+import { post_board,get_board,put_board } from "../api/CommApi";
 
 const BWritePage = () => {
-    const location = useLocation(); // 파라미터로 데이터 전달
-    const {bno} = location.state || {}; //state로 넘어온 데이터 변수 없으면 빈공백(없으면 에러)
-    const navigate = useNavigate();
+    const location = useLocation(); // state로 데이터 넘길시, 파라미터로 데이터 전달
+    const {bno} = location.state || {}; //변수에 값이 없으면 빈공백처리(없으면 에러)
+    const navigate = useNavigate(); // navigate사용
     const [btitle,setBtitle] = useState('');
     const [bcontent,setBcontent] = useState('');
     const [id,setId] = useState('aaa'); //로그인을 적용해서 session,token id를 가져옴.  
@@ -18,11 +18,11 @@ const BWritePage = () => {
            if(bno){
                get_board(bno)
                 .then(res=>{
-                    console.log("넘어온 데이터 board : ",res.data.board);
-                    console.log("넘어온 데이터 member_id : ",res.data.board.member_id);
-                    setBtitle(res.data.board.btitle);
-                    setBcontent(res.data.board.bcontent);
-                    setId(res.data.board.member_id);
+                    console.log("넘어온 데이터 board : ",res.data);
+                    console.log("넘어온 데이터 member_id : ",res.data.memberDto?.id);
+                    setBtitle(res.data.btitle);
+                    setBcontent(res.data.bcontent);
+                    setId(res.data.memberDto?.id);
                 })
            }else{
             setBtitle('');
@@ -35,7 +35,7 @@ const BWritePage = () => {
     const saveBtn = () =>{
         //axios -> 게시글저장 : post방식 {}객체형태로 전송
         if(bno){
-            axios.put({'bno':bno,'id':id,'btitle':btitle,'bcontent':bcontent})
+            put_board({'bno':bno,'id':id,'btitle':btitle,'bcontent':bcontent})
             .then(res=>{
                 alert('게시글을 수정합니다.');
                 navigate('/BList');
@@ -48,6 +48,10 @@ const BWritePage = () => {
             })
         }
     }
+
+    const cancelBtn = () => [
+        navigate('/blist')
+    ]
 
     return(
         <div className="root">
@@ -62,7 +66,7 @@ const BWritePage = () => {
           </div>
           <div class="d-grid gap-2 d-md-flex justify-content-md-end">
             <button onClick={saveBtn} class="btn btn-primary me-md-2" type="button">{bno?'수정':'저장'}</button>
-            <button class="btn btn-primary" type="button">취소</button>
+            <button class="btn btn-primary" type="button" onClick={cancelBtn}>취소</button>
           </div>
         </div>
     )

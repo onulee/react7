@@ -1,6 +1,6 @@
 import React from "react";
 
-const MList = () => {
+const MListPage = () => {
     return(
         <div className="root">
           <h2>MList 회원리스트</h2>
@@ -8,4 +8,4 @@ const MList = () => {
     )
 }
 
-export default MList;
+export default MListPage;

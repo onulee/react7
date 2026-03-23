@@ -1,5 +1,5 @@
 import React,{useState,useEffect} from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { get_boards,get_board,delete_board } from "../api/CommApi";
 
 const BListPage = () => {
@@ -29,7 +29,7 @@ const BListPage = () => {
     }
 
     const updateBtn = (bno) =>{
-        navigate('/bwrite',{state:{'bno':bno}})  //state 값전달  `/bwrite/${bno}` 가능
+        navigate('/bwrite',{state:{'bno':bno}})  //state 값전달 `/bwrite/${bno}` 가능
     }
 
     //게시판리스트 출력함수 - map사용시 key입력
@@ -38,7 +38,9 @@ const BListPage = () => {
             <div class="card" key={board.bno}>
                 <h5 class="card-header">번호 : {board.bno}</h5>
                 <div class="card-body">
-                    <h5 class="card-title">제목 : {board.btitle}</h5>
+                    <h5 class="card-title">
+                        <Link to={`/bview/${board.bno}`}>제목 :{board.btitle}</Link>
+                    </h5>
                     <p class="card-text">{board.bcontent}</p>
                     <button onClick={()=>updateBtn(board.bno)} class="btn btn-primary">수정</button>
                     <button onClick={()=>deleteBtn(board.bno)} class="btn btn-primary">삭제</button>

@@ -20,9 +20,12 @@ const Nav = () => {
                     <li className="nav-item">
                         <Link className="nav-link" to="/mlist">회원리스트</Link>
                     </li>
+                    <li className="nav-item">
+                        <Link className="nav-link" to="/login">로그인</Link>
+                    </li>
                     </ul>
                     <form className="d-flex" role="search">
-                    <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
+                    <input className="form-control me-2" type="search" placeholder="검색어를 입력하세요." aria-label="Search"/>
                     <button className="btn btn-outline-success me-2" type="button">search</button>
                     </form>
                 </div>
